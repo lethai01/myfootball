@@ -14,7 +14,7 @@
   	 	 <div class="content-wrapper">
 			<?php $this->load->view($temp, $this->data); ?>
   	 	 </div>
-		<footer class="main-footer">
+		<footer class="main-footer" style="background-color:#b3c2bf">
 			<?php $this->load->view('admin/footer'); ?>
 		</footer>
   	 </div><!-- ./wrapper -->

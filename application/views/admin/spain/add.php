@@ -49,62 +49,41 @@
                      <?php echo form_textarea($html_input_desc, set_value('meta_desc')); ?>
                       <div><?php echo form_error('meta_desc'); ?></div>
                     </div>
-                     <div class="input-group">
-                        <?php echo form_input(array('name' => 'image_link','id' => 'image_link', 'readonly' => 'readonly', 'class'=>'form-control'), set_value('image_link'));?>
-                        <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" onclick="BrowseServer();">Chọn Ảnh</button>
-                      </span>
+                    <div class="form-group">
+                    <label for="image_link">Ảnh nền <b class="required">*</b></label>
+                       <div class="input-group">
+                          <?php echo form_input(array('name' => 'image_link','id' => 'image_link', 'readonly' => 'readonly', 'class'=>'form-control'), set_value('image_link'));?>
+                          <span class="input-group-btn">
+                          <button class="btn btn-default" type="button" onclick="BrowseServer();">Chọn Ảnh</button>
+                        </span>
+                      </div>
+                      <div><?php echo form_error('image_link'); ?></div>
                     </div>
                     <div class="form-group">
                     <label>Parent <b class="required">*</b></label>
                     <?php echo form_dropdown('parent_id', $options, set_value('parent_id'), array('class' => 'form-control', 'width' => '30%')); ?>
-                    <div><?php echo form_error('image_link'); ?></div>
+                    <div><?php echo form_error('parent_id'); ?></div>
                     </div>
                     <div class="form-group">
                     <label>Tags for content <b class="required">*</b></label>
-                    <?php echo form_dropdown('tags[]', $tags, set_value('tags[]'), array('class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => 'Select a tag', 'style' => 'width: 100%')); ?>
+                    <?php echo form_dropdown('tags[]', $list_tags, set_value('tags[]'), array('class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => 'Select a tag', 'style' => 'width: 100%')); ?>
                       <div><?php echo form_error('tags[]'); ?></div>
                   </div><!-- /.form-group -->
                 <label for="content">Content <b class="required">*</b></label>
                     <textarea id="content" name="content" rows="20" cols="180" data-placeholder="This is my textarea to be replaced with CKEditor."></textarea>
                      <div><?php echo form_error('content'); ?></div>
-                   <!--  <div class="form-group">
-                     <label for="image_list">Imags list</label>
-                      <?php echo form_upload( array('name' => 'image_list[]', 'multiple' => 'multiple', 'size' => '20'), set_value('image_list[]')); ?>
-                     <p class="help-block">Chọn list danh sách ảnh.</p>
-                     <div><?php echo form_error('image_list'); ?></div>
-                   </div> -->
                   </div><!-- /.box-body -->
                   <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Add</button>
-                    <button type="button" class="btn btn-warning" onclick="window.location.href='<?php echo admin_url("football_menu")?>'">Cancel</button>
+                    <button type="button" class="btn btn-warning" onclick="window.location.href='<?php echo admin_url("spain")?>'">Cancel</button>
                   </div>
                 <?php echo form_close(); ?>
               </div><!-- /.box -->
             </div><!--/.col (right) -->
           </div>   <!-- /.row -->
         </section><!-- /.content -->
-<!-- <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script> -->
-<script src="<?php echo base_url('public') ?>/plugins/select2/select2.full.min.js"></script>
-<script src="<?php echo base_url('public') ?>/ckfinder/ckfinder.js"></script>
-<script src="<?php echo base_url('public') ?>/ckeditor/ckeditor.js"></script>
-<script>
-      $(function () {
-        //Initialize Select2 Elements
-        $(".select2").select2();
-      });
-    var editor;
-    function createEditor(languageCode, id) {
-        var editor = CKEDITOR.replace(id, {
-            language: languageCode
-        });
-    }
+<script src="<?php echo base_url('public') ?>/fckeditor/ckfinder/ckfinder.js"></script>
 
-    $(function () {
-        createEditor('vi', 'content');
-    });
-
-</script>
 <!-- ckfinter -->
 <script type="text/javascript">
         function BrowseServer() {
@@ -116,4 +95,29 @@
         function SetFileField(fileUrl) {
             document.getElementById('image_link').value = fileUrl;
         }
+    </script>
+<script src="<?php echo base_url('public') ?>/fckeditor/ckeditor/ckeditor.js"></script>
+<!-- ckeditor -->
+<script type="text/javascript">
+   CKEDITOR.replace( 'content',
+    {
+      filebrowserBrowseUrl : '<?php echo base_url() ?>public/fckeditor/ckfinder/ckfinder.html',
+      filebrowserImageBrowseUrl : '<?php echo base_url() ?>public/fckeditor/ckfinder/ckfinder.html?type=Images',
+      filebrowserFlashBrowseUrl : '<?php echo base_url() ?>public/fckeditor/ckfinder/ckfinder.html?type=Flash',
+      filebrowserUploadUrl : 
+         '<?php echo base_url() ?>public/fckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&currentFolder=/archive/',
+      filebrowserImageUploadUrl : 
+         '<?php echo base_url() ?>public/fckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&currentFolder=/cars/',
+      filebrowserFlashUploadUrl : '<?php echo base_url() ?>public/fckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+    });
 </script>
+<script src="<?php echo base_url('public') ?>/plugins/select2/select2.full.min.js"></script>
+<script>
+      $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+      });
+
+</script>
+
+

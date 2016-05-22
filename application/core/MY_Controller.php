@@ -11,7 +11,7 @@ class MY_Controller extends CI_Controller {
 		parent::__construct();
 		//Do your magic here
 		$this->load->library('Util');
-		$this->load->library('upload_football');
+		$this->load->model('football_footer_model');
 		/*$this->load->helper('admin');
 		$action = $this->uri->rsegment(2);
 		$controller = $this->uri->rsegment(1);

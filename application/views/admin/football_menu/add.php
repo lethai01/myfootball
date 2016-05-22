@@ -29,30 +29,16 @@
                       <input type="text" class="form-control" name = "site_title" id="site_title" placeholder="Enter Title" value="<?php echo set_value('site_title') ?>">
                       <div><?php echo form_error('site_title'); ?></div>
                     </div>
-                    <div class="form-group">
-                      <label for="meta_key">Meta keywords</label>
-                      <input type="text" class="form-control" name="meta_key" id="meta_key" placeholder="Enter keyword" value="<?php echo set_value('meta_key') ?>">
-                      <div><?php echo form_error('meta_key'); ?></div>
-                    </div>
-                    <div class="form-group">
-                      <label for="meta_desc">Meta description</label>
-                      <textarea name="meta_desc" id="meta_desc" class="form-control" rows="3"><?php echo set_value('meta_desc') ?></textarea>
-                      <div><?php echo form_error('meta_desc'); ?></div>
-                    </div>
-                    <label>Parent ID</label>
-                      <select name="parent" class="form-control">
-                        <option>Input Parent</option>
-                        <?php foreach ($list as $parent): ?>
-                        <option value="<?php echo $parent->id ?>"><?php echo $parent->name ?></option>
-                      <?php endforeach; ?>
-                      </select>
+                    <label>Parent</label>
+                      <div class="form-group">
+                      <?php echo form_dropdown(array('name' => 'parent_id', 'class' => 'form-control', 'style' => 'width:25%'), $listParent, set_value('parent_id')); ?>
+                      <div><?php echo form_error('parent_id'); ?></div>
+                      </div>
                     <label>Sort Order</label>
-                      <select name="sort" class="form-control">
-                        <option>Input localiton</option>
-                        <?php foreach ($sort_order as $sort): ?>
-                        <option value="<?php echo $sort ?>">Location <?php echo $sort ?></option>
-                        <?php endforeach; ?>
-                      </select>
+                     <div class="form-group">
+                       <?php echo form_dropdown(array('name' => 'sort', 'class' => 'form-control', 'style' => 'width:25%'), $listSort, set_value('sort')); ?>
+                       <div><?php echo form_error('sort'); ?></div>
+                     </div>
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
